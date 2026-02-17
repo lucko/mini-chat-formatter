@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'com.gradleup.shadow' version '9.3.1'
+}
+
+group = 'me.lucko'
+version = '0.1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://maven.hytale.com/release/' }
+    maven { url 'https://repo.helpch.at/releases/' }
+}
+
+processResources {
+    filesMatching('manifest.json') {
+        expand(project.properties)
+    }
+}
+
+dependencies {
+    implementation 'net.kyori:adventure-text-minimessage:4.26.1'
+    implementation 'net.kyori:adventure-text-serializer-legacy:4.26.1'
+
+    compileOnly 'com.hypixel.hytale:Server:2026.02.17-255364b8e'
+    compileOnly 'net.luckperms:api:5.5'
+    compileOnly 'at.helpch:placeholderapi-hytale:1.0.6'
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+shadowJar {
+    relocate 'net.kyori', 'me.lucko.minichatformatter.lib.kyori'
+}
+
+test {
+    useJUnitPlatform()
+}

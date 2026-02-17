@@ -1,0 +1,17 @@
+{
+  "Group": "lucko",
+  "Name": "mini-chat-formatter",
+  "Version": "${version}",
+  "Description": "A chat formatter plugin",
+  "Authors": [{"Name": "Luck"}],
+  "Website": "https://github.com/lucko/mini-chat-formatter",
+  "ServerVersion": "2026.02.17-255364b8e",
+  "Dependencies": {},
+  "OptionalDependencies": {
+    "LuckPerms:LuckPerms": "*",
+    "HelpChat:PlaceholderAPI": ">= 1.0.2"
+  },
+  "DisabledByDefault": false,
+  "Main": "me.lucko.minichatformatter.MiniChatFormatterPlugin",
+  "IncludesAssetPack": false
+}
