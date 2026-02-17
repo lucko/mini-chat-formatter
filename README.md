@@ -27,8 +27,8 @@
 ![](.github/assets/examples/example3.png)
 
 mini-chat-formatter is available to download from:
-* [CurseForge](https://www.curseforge.com/hytale/mods/mini-chat-formatter).
-* [GitHub](https://github.com/lucko/mini-chat-formatter/releases).
+* [CurseForge](https://www.curseforge.com/hytale/mods/mini-chat-formatter)
+* [Jenkins](https://ci.lucko.me/job/mini-chat-formatter/)
 
 ## Configuration
 
