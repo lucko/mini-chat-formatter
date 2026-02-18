@@ -10,12 +10,14 @@
 
 ## Features
 
-* Supports [MiniMessage](https://docs.papermc.io/adventure/minimessage/format/) for formatting e.g. `<red>This is red text</red>`.
+* Supports [MiniMessage](https://docs.papermc.io/adventure/minimessage/format/) formatting tags e.g. `<red>hello!</red>` or `<#ff5555>hello!</#ff5555>`.
 * Supports legacy Minecraft-style formatting codes e.g. `&cThis is red text`.
 * Supports [PlaceholderAPI](https://placeholderapi.com/downloads/) placeholders e.g. `%player_world%`.
 * Supports [LuckPerms](https://luckperms.net) prefixes, suffixes and meta data e.g. `<prefix>` or `<suffix>`.
 
 ### Examples
+
+The format is designed to be simple and easy to use.
 
 #### Format: `<yellow><username></yellow>: <message>`
 ![](.github/assets/examples/example1.png)
@@ -23,7 +25,7 @@
 #### Format: `<prefix><username><suffix>: <message>`
 ![](.github/assets/examples/example2.png)
 
-#### Format: `<gray>(%player_biome%)</gray> <prefix><username><suffix>: <message>`
+#### Format: `<#aaaaaa>(%player_biome%)</#aaaaaa> <prefix><username><suffix>: <message>`
 ![](.github/assets/examples/example3.png)
 
 mini-chat-formatter is available to download from:
@@ -33,6 +35,8 @@ mini-chat-formatter is available to download from:
 ## Configuration
 
 There is one configuration property: `"Format"`. This is the format that will be used for all chat messages.
+
+You can use the `/minichatformatter reload` command to apply changes to the format without restarting the server (see the Commands section below for more details).
 
 ### Example Formats
 

@@ -1,3 +1,28 @@
+/*
+ * This file is part of mini-chat-formatter, licensed under the MIT License.
+ *
+ *  Copyright (c) lucko (Luck) <luck@lucko.me>
+ *  Copyright (c) contributors
+ *
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to deal
+ *  in the Software without restriction, including without limitation the rights
+ *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *  copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ *
+ *  The above copyright notice and this permission notice shall be included in all
+ *  copies or substantial portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *  SOFTWARE.
+ */
+
 package me.lucko.minichatformatter.format;
 
 import net.kyori.adventure.text.Component;
@@ -6,6 +31,7 @@ import net.kyori.adventure.text.minimessage.Context;
 import net.kyori.adventure.text.minimessage.tag.Tag;
 import net.kyori.adventure.text.minimessage.tag.resolver.ArgumentQueue;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import org.jetbrains.annotations.VisibleForTesting;
 
 /**
  * Utilities for formatting MiniMessage text.
@@ -40,7 +66,8 @@ public enum FormatUtil {
      * Checks if the input string contains any legacy color codes (either '&x' or '§x').
      * If it does, it returns the character used for the color codes. If not, it returns 0.
      */
-    private static char findLegacyColorCodes(String string) {
+    @VisibleForTesting
+    static char findLegacyColorCodes(String string) {
         final char[] charArray = string.toCharArray();
         for (int i = 0; i < charArray.length - 1; i++) {
             if ((charArray[i] == LegacyComponentSerializer.AMPERSAND_CHAR

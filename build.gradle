@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'com.gradleup.shadow' version '9.3.1'
+    id 'dev.yumi.gradle.licenser' version '2.2.2'
 }
 
 group = 'me.lucko'
@@ -18,17 +19,26 @@ processResources {
     }
 }
 
+var hytaleVersion = '2026.02.18-f3b8fff95'
+
 dependencies {
+    // shaded
     implementation 'net.kyori:adventure-text-minimessage:4.26.1'
     implementation 'net.kyori:adventure-text-serializer-legacy:4.26.1'
 
-    compileOnly 'com.hypixel.hytale:Server:2026.02.17-255364b8e'
+    // compile only
+    compileOnly "com.hypixel.hytale:Server:$hytaleVersion"
     compileOnly 'net.luckperms:api:5.5'
     compileOnly 'at.helpch:placeholderapi-hytale:1.0.6'
 
+    // test
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.mockito:mockito-core:5.21.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.21.0'
+
+    testImplementation "com.hypixel.hytale:Server:$hytaleVersion"
 }
 
 shadowJar {
@@ -37,4 +47,9 @@ shadowJar {
 
 test {
     useJUnitPlatform()
+    systemProperty 'java.util.logging.manager', 'com.hypixel.hytale.logger.backend.HytaleLogManager'
+}
+
+license {
+    rule(file("HEADER.txt"))
 }

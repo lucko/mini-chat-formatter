@@ -23,20 +23,31 @@
  *  SOFTWARE.
  */
 
-package me.lucko.minichatformatter.hook.placeholderapi;
+package me.lucko.minichatformatter;
 
-import at.helpch.placeholderapi.PlaceholderAPI;
-import com.hypixel.hytale.server.core.universe.PlayerRef;
+import com.hypixel.hytale.codec.ExtraInfo;
+import org.bson.BsonDocument;
+import org.junit.jupiter.api.Test;
 
-public class PlaceholderApiHookImpl implements PlaceholderApiHook {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-    @Override
-    public String resolvePlaceholder(PlayerRef sender, String placeholder) {
-        return PlaceholderAPI.setPlaceholders(sender, "%" + placeholder + "%");
+class MiniChatFormatterConfigTest {
+
+    @Test
+    void testEncode() {
+        MiniChatFormatterConfig config = new MiniChatFormatterConfig();
+        config.setFormat("test");
+        BsonDocument encoded = MiniChatFormatterConfig.CODEC.encode(config, new ExtraInfo());
+        assertEquals("{\"Format\": \"test\"}", encoded.toJson());
     }
 
-    @Override
-    public String resolveRelationalPlaceholder(PlayerRef sender, PlayerRef recipient, String placeholder) {
-        return PlaceholderAPI.setRelationalPlaceholders(sender, recipient, "%" + placeholder + "%");
+    @Test
+    void testDecode() {
+        BsonDocument document = BsonDocument.parse("{\"Format\": \"test\"}");
+        MiniChatFormatterConfig config = MiniChatFormatterConfig.CODEC.decode(document, new ExtraInfo());
+        assertNotNull(config);
+        assertEquals("test", config.getFormat());
     }
+
 }

@@ -23,20 +23,32 @@
  *  SOFTWARE.
  */
 
-package me.lucko.minichatformatter.hook.placeholderapi;
+package me.lucko.minichatformatter.util;
 
-import at.helpch.placeholderapi.PlaceholderAPI;
-import com.hypixel.hytale.server.core.universe.PlayerRef;
+import com.hypixel.hytale.codec.ExtraInfo;
+import com.hypixel.hytale.server.core.Message;
 
-public class PlaceholderApiHookImpl implements PlaceholderApiHook {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    @Override
-    public String resolvePlaceholder(PlayerRef sender, String placeholder) {
-        return PlaceholderAPI.setPlaceholders(sender, "%" + placeholder + "%");
+/**
+ * Useful JUnit assertions for {@link Message}s.
+ */
+public enum MessageAssertions {
+    ;
+
+    public static void assertMessageEquals(Message expected, Message actual) {
+        // Compare the encoded JSON representation first
+        // easier to debug as Message/FormattedMessage do not implement toString()
+        assertEquals(
+                Message.CODEC.encode(expected, new ExtraInfo()),
+                Message.CODEC.encode(actual, new ExtraInfo())
+        );
+
+        // Message does not implement equals() but FormattedMessage does
+        assertEquals(
+                expected.getFormattedMessage(),
+                actual.getFormattedMessage()
+        );
     }
 
-    @Override
-    public String resolveRelationalPlaceholder(PlayerRef sender, PlayerRef recipient, String placeholder) {
-        return PlaceholderAPI.setRelationalPlaceholders(sender, recipient, "%" + placeholder + "%");
-    }
 }

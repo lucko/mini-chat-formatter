@@ -23,20 +23,38 @@
  *  SOFTWARE.
  */
 
-package me.lucko.minichatformatter.hook.placeholderapi;
+package me.lucko.minichatformatter.hook;
 
-import at.helpch.placeholderapi.PlaceholderAPI;
-import com.hypixel.hytale.server.core.universe.PlayerRef;
+import me.lucko.minichatformatter.hook.luckperms.LuckPermsHook;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-public class PlaceholderApiHookImpl implements PlaceholderApiHook {
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
-    @Override
-    public String resolvePlaceholder(PlayerRef sender, String placeholder) {
-        return PlaceholderAPI.setPlaceholders(sender, "%" + placeholder + "%");
+class LuckPermsHookTest {
+
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "hello <prefix> world",
+            "hello <suffix> world",
+            "hello <meta:rank> world",
+            "<prefix>",
+            "<prefix><suffix><meta:rank>"
+    })
+    void testContainsTagsTrue(String input) {
+        Assertions.assertTrue(LuckPermsHook.containsTags(input));
     }
 
-    @Override
-    public String resolveRelationalPlaceholder(PlayerRef sender, PlayerRef recipient, String placeholder) {
-        return PlaceholderAPI.setRelationalPlaceholders(sender, recipient, "%" + placeholder + "%");
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "hello",
+            "",
+            "prefix",
+            "<prefix"
+    })
+    void testContainsTagsFalse(String input) {
+        assertFalse(LuckPermsHook.containsTags(input));
     }
+
 }
