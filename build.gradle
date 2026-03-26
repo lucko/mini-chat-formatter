@@ -19,7 +19,7 @@ processResources {
     }
 }
 
-var hytaleVersion = '2026.02.18-f3b8fff95'
+var hytaleVersion = '2026.03.26-89796e57b'
 
 dependencies {
     // shaded
