@@ -7,19 +7,23 @@ plugins {
 group = 'me.lucko'
 version = '0.1.0-SNAPSHOT'
 
+var hytaleVersion = '0.5.0'
+var hytaleRepo = 'release'
+
 repositories {
     mavenCentral()
-    maven { url 'https://maven.hytale.com/release/' }
+    maven { url "https://maven.hytale.com/${hytaleRepo}/" }
     maven { url 'https://repo.helpch.at/releases/' }
 }
 
 processResources {
     filesMatching('manifest.json') {
-        expand(project.properties)
+        expand (
+                'pluginVersion': project.version,
+                'hytaleVersion': hytaleVersion
+        )
     }
 }
-
-var hytaleVersion = '2026.03.26-89796e57b'
 
 dependencies {
     // shaded
