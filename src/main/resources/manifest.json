@@ -9,7 +9,7 @@
   "Dependencies": {},
   "OptionalDependencies": {
     "LuckPerms:LuckPerms": "*",
-    "HelpChat:PlaceholderAPI": ">= 1.0.2"
+    "HelpChat:PlaceholderAPI": "^1.0.2"
   },
   "DisabledByDefault": false,
   "Main": "me.lucko.minichatformatter.MiniChatFormatterPlugin",
