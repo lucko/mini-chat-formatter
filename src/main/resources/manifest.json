@@ -1,11 +1,11 @@
 {
   "Group": "lucko",
   "Name": "mini-chat-formatter",
-  "Version": "${version}",
+  "Version": "${pluginVersion}",
   "Description": "A chat formatter plugin",
   "Authors": [{"Name": "Luck"}],
   "Website": "https://github.com/lucko/mini-chat-formatter",
-  "ServerVersion": "2026.03.26-89796e57b",
+  "ServerVersion": "${hytaleVersion}",
   "Dependencies": {},
   "OptionalDependencies": {
     "LuckPerms:LuckPerms": "*",
