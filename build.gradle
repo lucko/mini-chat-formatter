@@ -7,12 +7,11 @@ plugins {
 group = 'me.lucko'
 version = '0.1.0'
 
-var hytaleVersion = '0.5.0'
-var hytaleRepo = 'release'
+var hytaleVersion = '0.5.2'
 
 repositories {
     mavenCentral()
-    maven { url "https://maven.hytale.com/${hytaleRepo}/" }
+    maven { url 'https://nexus.lucko.me/repository/maven-hytale/' }
     maven { url 'https://repo.helpch.at/releases/' }
 }
 
