@@ -7,7 +7,7 @@ plugins {
 group = 'me.lucko'
 version = '0.1.0'
 
-var hytaleVersion = '0.5.2'
+var hytaleVersion = '0.6.0'
 
 repositories {
     mavenCentral()
